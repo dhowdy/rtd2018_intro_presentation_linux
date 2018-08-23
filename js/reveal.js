@@ -61,7 +61,7 @@
 
 			// Visibility rule for backwards navigation arrows; "faded", "hidden"
 			// or "visible"
-			controlsBackArrows: 'faded',
+			controlsBackArrows: 'hidden',
 
 			// Display a presentation progress bar
 			progress: true,
@@ -176,7 +176,7 @@
 			focusBodyOnPageVisibilityChange: true,
 
 			// Transition style
-			transition: 'slide', // none/fade/slide/convex/concave/zoom
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
 
 			// Transition speed
 			transitionSpeed: 'default', // default/fast/slow
@@ -185,10 +185,10 @@
 			backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
 
 			// Parallax background image
-			parallaxBackgroundImage: '', // CSS syntax, e.g. "a.jpg"
+			parallaxBackgroundImage: '/assets/pibg.jpg', // CSS syntax, e.g. "a.jpg"
 
 			// Parallax background size
-			parallaxBackgroundSize: '', // CSS syntax, e.g. "3000px 2000px"
+			parallaxBackgroundSize: '1440px 850px', // CSS syntax, e.g. "3000px 2000px"
 
 			// Parallax background repeat
 			parallaxBackgroundRepeat: '', // repeat/repeat-x/repeat-y/no-repeat/initial/inherit
