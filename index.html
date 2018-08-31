@@ -1,81 +1,665 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<link href="https://fonts.googleapis.com/css?family=Oswald|Oxygen" rel="stylesheet">
-		<title>Raspberry Pi and ESP8266: A beginner’s guide to interacting with the world using microcontrollers</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href="https://fonts.googleapis.com/css?family=Oswald|Oxygen" rel="stylesheet">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+	<title>Raspberry Pi and ESP8266: A beginner’s guide to interacting with the world using microcontrollers</title>
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h1>Raspberry Pi and ESP8266</h1>
-					<h3>A beginner’s guide to interactingwith the world using microcontrollers</h3>
-					<p>
-						<h6>Created by Don Howdeshell</h6>
-					</p>
-				</section>
-				<section data-background="/assets/mstsignnight.jpg" id="fragments">
-					<block background="rgba(255, 255, 255, 0.05)">
-						<h1>Introduction</h1>
-						<p class="fragment">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/el_don.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section id="start" data-background="rgba(0, 0, 0, .25">
+				<h1>Raspberry Pi and ESP8266</h1>
+
+				<h3>A beginner’s guide to interacting with<br> the world using microcontrollers</h3>
+
+
+				<p>
+					<h6>Created by Don Howdeshell</h6>
+				</p>
+			</section>
+			<section data-background="/assets/mstsignnight.jpg" id="intro0" data-background="rgba(0, 0, 0, .25">
+				<block background="rgba(255, 255, 255, 0.05)">
+					<h1>Introduction</h1>
+					<p class="fragment">
 						<span class="fragment"><h2>Don Howdeshell</h2></span>
-					
+
 						<span class="fragment"><h5>University of Missouri - Rolla / Missouri University of Science & Technology</h5></span>
 						<span class="fragment"><h5>BS in Information Science and Technology</h5></span>
 						<span class="fragment"><h5>13 years at UMR/S&T - Systems Administrator</h5></span>
 						<span class="fragment"><h5>5 years at ITRSS</h5>
-						<img style="border: none; box-shadow: none;" width="200" height="62" data-src="/assets/paper-logo-black.png"></span>
-						</p>
-					</block>
-				</section>
-				<section data-background="/assets/donoffice.jpg" id="fragments">
-					<block background="rgba(255, 255, 255, 0.05)">
-						<p class="fragment">
+							<img style="border: none; box-shadow: none;" width="200" height="62" data-src="/assets/paper-logo-black.png"></span>
+					</p>
+				</block>
+			</section>
+			<section data-background="/assets/donoffice.jpg" id="intro1" data-background="rgba(0, 0, 0, .25">
+				<block background="rgba(255, 255, 255, 0.05)">
+					<p class="fragment">
 						<span class="fragment"><h2>Software & Hardware Development</h2></span>
-					
+
 						<span class="fragment"><h5>MinerBytes</h5></span>
 						<span class="fragment"><h5>Embedded Systems</h5></span>
 						<span class="fragment"><h5>Server Administration</h5></span>
 						<span class="fragment"><h5>A little bit of everything</h5></span>
 						<span class="fragment"><h7>RTD apps, RTiD, MinerTrax, Nonavitra, microcontrollers</h7></span>
-						</p>
-					</block>
+					</p>
+				</block>
+			</section>
+			<section id="projects">
+				<section id="lines" data-background="rgba(0, 0, 0, .25">
+					<h2>MinerBytes, RTiD, RTD Apps</h2>
+					<p>
+						<ul>
+							<li>
+								<h3>Android: 558,000 Lines</h3>
+							</li>
+							<li>
+								<h3>iOS: 509,000 Lines</h3>
+							</li>
+							<li>
+								<h3>MinerBytes v3: 93,000 Lines</h3>
+							</li>
+							<li>
+								<h3>RTiD: 4,000 Lines</h3>
+							</li>
+						</ul>
+					</p>
 				</section>
-			</div>
+				<section id="mb_screens" data-background="/assets/mbv3/screens.png"></section>
+				<section id="mb_playlist" data-background="/assets/mbv3/playlist.png"></section>
+				<section id="mb_playlistrows" data-background="/assets/mbv3/playlistrows.png"></section>
+				<section id="mb_content" data-background="/assets/mbv3/content.png"></section>
+				<section id="rtid0" data-background="/assets/rtid.png">
+					<span class="fragment"><h2>RTiD: NFC-Based Attendance System</h2></span>
+					<p>
+						<ul>
+							<span class="fragment"><li>
+									<h3>Raspberry Pi Zero v1.2</h3>
+								</li></span>
+							<span class="fragment"><li>
+									<h3>USB WiFi Dongle</h3>
+								</li></span>
+							<span class="fragment"><li>
+									<h3>PN532 NFC/RFID Reader w/ Serial Interface</h3>
+								</li></span>
+							<span class="fragment"><li>
+									<h3>PowerBoost 1000 Charger and Battery Backup</h3>
+								</li></span>
+							<span class="fragment"><li>
+									<h3>2 Batteries - 350mAh LiPo & 3400mAh PowerBank</h3>
+								</li></span>
+						</ul>
+					</p>
+				</section>
+				<section id="rtid1" data-background="/assets/rtid.png">
+					<span class="fragment"><h2>RTiD: NFC-Based Attendance System</h2></span>
+					<p>
+						<ul>
+							<span class="fragment"><li>
+									<h3>Scans NFC Tag</h3>
+								</li></span>
+							<span class="fragment"><li>
+									<h3>Flashes RGB LEDs on success or failure</h3>
+								</li></span>
+							<span class="fragment"><li>
+									<h3>Caches the data until it can send it to Web App</h3>
+								</li></span>
+							<span class="fragment"><li>
+									<h3>Battery management in software</h3>
+								</li></span>
+							<span class="fragment"><li>
+									<h3>Software to handle WiFi, errors, failures, parsing, etc.</h3>
+								</li></span>
+						</ul>
+					</p>
+				</section>
+			</section>
+			
+			<section id="whatissoc" data-transition="zoom" data-background-transition="zoom" data-background="rgba(0, 0, 0, .25">
+				<h2>What is a an SoC?</h2>
+				<p>
+					<h5>System-on-a-Chip; Like most other SoCs, the Pi is ARM based</h5>
+					<h5>Contains CPU, Memory Controller, USB, GPIO, Timers, SPI, I&sup2C, PWM, UART, 1-Wire, Video Controller, etc</h5>
+					<h5>Very similar to other devices such as smartphones, routers, & tablets</h5>
+					<h5>Full documentation of VideoCore IV graphics processor</h5>
+					<p><h5>Closed source firmware "blobs" <img style="display: inline-block" width="75" height="75" data-src="/assets/sad_panda.png"></h5></p>
+					<h5>Moving toward open source or "blobless" firmware</h5>
+				</p>
+			</section>
+			<section id="3bsoc0" data-transition="zoom" data-background-transition="zoom" data-background="rgba(0, 0, 0, .7">
+				<h5>Raspberry Pi 3 Model B SOC: BCM2837</h5>
+				<img width="733" height="550" data-src="/assets/pi_images/3_b.png">
+			</section>
+			<section id="3bsoc1" data-transition="zoom" data-background-transition="zoom" data-background="rgba(0, 0, 0, .7">
+				<h5>Raspberry Pi 3 Model B SOC: BCM2837</h5>
+				<img width="733" height="550" data-src="/assets/pi_images/3_b_soc.png">
+			</section>
+			<section id="bcm2837" data-transition="zoom" ata-background-transition="zoom" data-background="rgba(0, 0, 0, .7">
+				<img width="300" height="300" data-src="/assets/pi_images/bcm2837.png">
+			</section>
+			
+			<section id="licensing" data-background="rgba(0, 0, 0, .25">
+				<h2>Software Licensing & Adherence</h2>
+				<p>
+					<h5>Open vs Closed Source Software: Which is better?</h5>
+					<h5>Closed source "blobs" are essentially a black box with input and output</h5>
+					<h5>GNU/GPL vs Apache vs MIT vs dozens of others. Pick the right license. </h5>
+					<h5>GPL: Allows you to use code however you'd like, but...</h5>
+					<h5>if you modify the original code then you have to share it.</h5>
+				</p>
+			</section>
+			<section id="whatispi" data-background="rgba(0, 0, 0, .25">
+				<h2>What is a Raspberry Pi?</h2>
+				<p>
+					<h5>An inexpensive credit card-sized, single board computer (SBC)</h5>
+					<h5>Runs a variety of operating systems (OSes), but typically Linux</h5>
+					<h5>Capable of hardware-accelerated full HD 1080P video output</h5>
+					<h5>40 or 44 General Purpose Input/Output (GPIO) pins to connect</h5>
+					<h5>Has additional accessories like a camera and touchscreen</h5>
+					<h5>Massive community following with 20,000,000 devices sold!!</h5>
+				</p>
+			</section>
+			<section id="pistarted" data-background="rgba(0, 0, 0, .25">
+					<h2>Why the Raspberry Pi?</h2>
+					<p>
+						<h6>Longstanding goal to create a inexpensive computers for education</h6>
+						<h6>Created Feburary 2012 by the Raspberry Pi Foundation in UK</h6>
+						<h6>Teaching basic computer skills to children</h6>
+						<h6>Named after a fruit (as many microcontrollers are) and Python</h6>
+						<h6>Substantial collaboration between the Foundation and Broadcom</h6>
+						<h6>Eben Upton, Broadcom, and the Foundation</h6>
+						<h6>Over 3 dozen operating systems available for the Pi.</h6>
+						<h6>Build your own!!</h6>
+					</p>
+				</section>
+			<section id="pimodels" data-background="rgba(0, 0, 0, .25">
+				<section id="pihardware" data-background="rgba(0, 0, 0, .25">
+					<h2>Raspberry Pi Hardware Features</h5>
+					<h5>CPU, GPU, RAM</h5>
+					<h5>Ethernet, WiFi, Bluetooth</h5>
+					<h5>USB, HDMI, Composite, Audio</h5>
+					<h5>GPIO (SPI, I&sup2C, PWM, UART, 1-Wire)</h5>
+				</section>
+				<section id="pia" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Model A: Feburary 2013 $25</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/1_a.png">
+					<h5>1x 700Mhz, 256MB, 1x USB</h5>
+				</section>
+				<section id="pia" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Model A: Feburary 2013 $25</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/1_a.png">
+					<h5>1x 700Mhz, 256MB, 1x USB</h5>
+				</section>
+				<section id="pib" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Model B: April 2013 $35</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/1_a.png">
+					<h5>1x 700Mhz, 256MB, Ethernet, 2x USB</h5>
+				</section>
+				<section id="cm1" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Compute Module: April 2014 $30</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/compute_1.png">
+					<h5>1x 700Mhz, 512MB, 4GB EMMC</h5>
+				</section>
+				<section id="pib+" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Model B+: July 2014 $25</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/1_b+.png">
+					<h5>1x 700Mhz, 512MB, Ethernet, 4x USB</h5>
+				</section>
+				<section id="pia+" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Model A+: November 2014 $20</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/1_a+.png">
+					<h5>1x 700Mhz, 512MB, 1x USB</h5>
+				</section>
+				<section id="pi2b" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi 2 Model B: Feburary 2015 (1.2 October 2016) $35</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/2_b.png">
+					<h5>4x 900Mhz, 1GB, Ethernet, 4x USB</h5>
+				</section>
+				<section id="zero" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Zero: November 2015 (1.2 May 2016) $5</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/zero.png">
+					<h5>1x 1Ghz, 512MB, 1x MicroUSB</h5>
+				</section>
+				<section id="pi3b" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi 3 Model B: Feburary 2016 $35</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/3_b.png">
+					<h5>4x 1.2Ghz, 1GB, Ethernet, 4x USB, WiFi (b/g/n), Bluetooth</h5>
+				</section>
+				<section id="cm3" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Compute Module 3: Feburary 2017 $30</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/compute_3.png">
+					<h5>4x 1.2Ghz, 1GB, 4GB EMMC</h5>
+				</section>
+				<section id="zerow" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Zero W: Feburary 2017 $10</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/zero_w.png">
+					<h5>1x 1Ghz, 512MB, 1x MicroUSB, WiFi (b/g/n)</h5>
+				</section>
+				<section id="pi3b+" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi 3 Model B+: March 2018 $35</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/3b+.png">
+					<h5>4x 1.4Ghz, 1GB, Gb Ethernet, 4x USB, WiFi (b/g/n + a/c), Bluetooth</h5>
+				</section>
+				<section id="picam" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Cameras: May 2013 & NOIR October 2013 $24</h5>
+					<img width="733" height="550" data-src="/assets/pi_images/camera.png">
+					<h5>Ribbon Cable, 1080P, With or Without Infrared Filter</h5>
+				</section>
+				<section id="pitouch" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Touchscreen Display: September 2015 $70</h5>
+					<img width="433" height="550" data-src="/assets/pi_images/touchscreen.png">
+					<h5>7", 800x480, 10x Capacitive Touch, Ribbon Cable</h5>
+				</section>
+				<section id="picmio" data-background="rgba(0, 0, 0, .7">
+					<h5>Raspberry Pi Compute I/O Board: March 2017 $115</h5>
+					<img width="500" height="533" data-src="/assets/pi_images/compute_io.png">
+					<h5>120 GPIO, 1x USB, 2x Camera, 2x Display</h5>
+				</section>
+			</section>
+			<section id="whatisesp" data-background="rgba(0, 0, 0, .25">
+				<h2>What is an ESP8266?</h2>
+				<p>
+					<h5>An inexpensive WiFi microchip built for IoT</h5>
+					<h5>Allows microcontrollers to connect to WiFi and run commands</h5>
+					<h5>Designed to connect to microcontrollers to add WiFi capabilities</h5>
+					<h5>Came onto the scene in August 2014 with sketchy start</h5>
+					<h5>Had no English documentation or command interpreter. </h5>
+					<h5>Incredibly fast community adoption and development</h5>
+				</p>
+			</section>
+			<section id="espstarted" data-background="rgba(0, 0, 0, .25">
+				<h2>Why the ESP8266?</h2>
+					<p>
+						<h6>WiFi is ubiquitous. The ESP8266 initially cost $5.</h6>
+						<h6>ESP is cheap, durable, compact, easy on power.</h6>
+						<h6>Microcontrollers like Arduino are very capable and...</h6>
+						<h6>ESP8266 promised to add WiFi to any microcontroller.</h6>
+						<h6>Hackers soon learned that the ESP was far more capable on it's own</h6>
+						<h6>Went from a WiFi adapter to a standalone Wifi system overnight</h6>
+						<h6>There's now a dozen SDKs available for the ESP8266</h6>
+					</p>
+			</section>
+			<section id="esplang" data-background="rgba(0, 0, 0, .25">
+					<h2>What languages run on the ESP?</h2>
+						<p>
+							<ul>
+								<span class="fragment"><li>
+									<h5>NodeMCU - Lua-based firmware</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Arduino - C++-based firmware</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>MicroPython - Python for embedded devices</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Espruino - Javascript SDK & Firmware</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Sming - asynchronous C/C++ for high speed </h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>BASIC.  Yes, BASIC. I guess because you can?</h5>
+								</li></span>
+							</ul>	
+						</p>
+				</section>
+				<section id="espmodels" data-background="rgba(0, 0, 0, .25">
+					<section id="esphardware" data-background="rgba(0, 0, 0, .25">
+						<h2>ESP8266 Hardware Features</h5>
+						<h5>SoC with b/g/n WiFi at 80Mhz</h5>
+						<h5>SPI flash module</h5>
+						<h5>11.5mm X 11.5mm</h5>
+						<h5>GPIO (SPI, I&sup2C, PWM, UART)</h5>
+					</section>
+					<section id="esp01" data-background="rgba(0, 0, 0, .7">
+						<h5>ESP8266-01</h5>
+						<img width="733" height="412" data-src="/assets/esp/esp01.png">
+						<h5>6 GPIO, Typically 1MB Flash, Requires 3.3V Serial To Flash</h5>
+					</section>
+					<section id="esp12" data-background="rgba(0, 0, 0, .7">
+						<h5>ESP8266-12</h5>
+						<img width="550" height="550" data-src="/assets/esp/esp12_1.png">
+						<h5>11 GPIO, Typically 4MB Flash, Requires 3.3V Serial To Flash</h5>
+					</section>
+					<section id="esp12e" data-background="rgba(0, 0, 0, .7">
+						<h5>ESP8266-12e</h5>
+						<img width="733" height="467" data-src="/assets/esp/esp8266-12e.png">
+						<h5>16+ GPIO, Typically 4MB Flash, Onboard Serial</h5>
+					</section>
+					<section id="esp8285-12e" data-background="rgba(0, 0, 0, .7">
+						<h5>ESP8285-12e: ESP8285 = ESP8286 + 1MB Flash</h5>
+						<img width="733" height="467" data-src="/assets/esp/esp8285-12e.png">
+						<h5>8+ GPIO, Typically 1MB or 4MB Flash, Onboard Serial</h5>
+					</section>
+					<section id="esp8285-m2" data-background="rgba(0, 0, 0, .7">
+						<h5>ESP8285-M2: ESP8285 = ESP8286 + 1MB Flash</h5>
+						<img width="733" height="470" data-src="/assets/esp/esp8285-m2.png">
+						<h5>10+ GPIO, Typically 1MB Flash, Requires 3.3V Serial To Flash</h5>
+					</section>
+				</section>
+				<section id="protocols" data-background="rgba(0, 0, 0, .25">
+					<h2>Supported Hardware & Software Protocols</h2>
+						<ul>
+							<li><h7>Serial/UART: Universal Asynchronous Receiver/Transmitter</h7>
+							<h7>1:1 device ratio, slow, easy in hardware, hard in software.</h7></li>
+							<li><h7>SPI: Serial Peripheral Interface; synchronous, 1 master to</h7>
+							<h7>multiple slaves, faster than UART, high data rate, short distances</h7></li>
+							<li><h7>I&sup2C: Inter-Integrated Circuit; 2 wire serial, simple</h7>
+							<h7>multiple masters & up to 1008 slaves, high data rate, short distances</h7></li>
+							<li><h7>1-Wire: Similar to I&sup2C, lower data rate & longer distances</h7></li>
+							<li><h7>PWM: Pulse-Width Modulation; Digital pulse wave to approximate</h7>
+							<h7>an analog signal. Changes the duration of the pulse to get desired waveform. Done in software.</h7></li>
+						</ul>
+				</section>
+				<section id="pisoftware">
+					<section id="pios" data-background="rgba(0, 0, 0, .25">
+						<h2>Software on the Raspberry Pi</h2>
+							<ul>
+								<li><h5>Linux, Linux, Linux</h5></li>
+								<li><h5>Raspbian, Ubuntu MATE, Kali, CentOS, many JeOS distros</h5></li>
+								<li><h5>Kodi, RetroPie, OpenMediaVault, Open Source Media Center, etc.</h5></li>
+								<li><h5>Virtually any Linux-friendly programming language</h5></li>
+								<li><h5>Extensive Python libraries available</h5></li>
+								<li><h5>LAMP Server (Linux, Apache, MySQL, PHP)</h5></li>
+								<li><h8>Windows 10 IoT Core</h8></li>
+							</ul>
+					</section>
+					<section id="pixel" data-background="/assets/pios/pi_pixel.jpg"></section>
+					<section id="mate" data-background="/assets/pios/pi_mate.png"></section>
+					<section id="android" data-background="/assets/pios/pi_android.jpg"></section>
+					<section id="libreelec" data-background="/assets/pios/pi_libreelec.jpg"></section>
+					<section id="retropi0" data-background="/assets/pios/pi_retropie0.png"></section>
+					<section id="retropi0" data-background="/assets/pios/pi_retropie1.png"></section>
+					<section id="retropi0" data-background="/assets/pios/pi_retropie2.png"></section>
+					<section id="omv" data-background="/assets/pios/pi_omv.png"></section>
+					<section id="piconsole" data-background="/assets/pios/pi_console.jpg"></section>
+					<section id="windows" data-background="/assets/pios/pi_windows.jpg"></section>
+					<section id="piother" data-background="rgba(0, 0, 0, .25">
+						<h2>Other features of the Raspberry Pi</h2>
+						<ul>
+							<li><h5>One-Time Programmable Memory (OTP) can never be unset</h5></li>
+							<li><h5>USB Boot - Boot the Pi from USB mass storage device (3B or 3B+)</h5></li>
+							<li><h5>PXE Boot - Requires DHCP, DNS, TFTP, and NFS servers (3B or 3B+)</h5></li>
+							<li><h5>Also possible to boot from a secondary SD card, NAND flash, & SPI</h5></li>
+							<li><h5>Hack workarounds for USB and PXE booting on older models</h5></li>
+						</ul>
+					</section>
+					<section id="mbsoft" data-background="/assets/mbv3code.jpg">
+						<h2>MinerBytes Software</h2>
+							<ul>
+								<li><h5>Linux - Debian-based distro</h5></li>
+								<li><h5>Bash/Shell</h5></li>
+								<li><h5>Perl</h5></li>
+								<li><h5>Python</h5></li>
+								<li><h5>PHP</h5></li>
+								<li><h5>MySQL</h5></li>
+								<li><h5>CSS, Javascript, HTML <img style="display: inline-block" width="60" height="60" data-src="/assets/html5.png"></h5></li>
+								<li><h5>C++</h5></li>
+								
+							</ul>
+					</section>
+					<section id="pi_iot" data-background="rgba(0, 0, 0, .25">
+						<h2>Internet of Things with Raspberry Pi</h2>
+						<h5>LAMP Server: All-in-one with few/no external dependencies</h5>
+						<h5>HTML5 Web Apps are commonplace</h5>
+						<h5>Python is used extensively but exclusively</h5>
+						<h5>Full Linux OS with GPIO support</h5>
+						<h5>Application Programming Interfaces (APIs)</h5>
+					</section>
+				</section>
+				
+				<section id="don_pi_iot">
+					<section id="don_pi_iot_overview" data-background="rgba(0, 0, 0, .25">
+						<h2>Don's Raspberry Pi IoT Projects</h2>
+							<ul>
+								<li><h5>Baby Monitors</h5></li>
+								<li><h5>RGB LED Clock to teach kids how to tell time</h5></li>
+								<li><h5>Garage door opener and status indicator</h5></li>
+								<li><h5>Motion detection under-bed RGB LED lights</h5></li>
+								<li><h5>RGB LED Headboard and Lamps</h5></li>
+								<li><h5>Home Thermostat/HVAC Controls</h5></li>
+								<li><h5>Google Home</h5></li>
+							</ul>
+					</section>
+					<section id="baby_monitors0" data-background="/assets/don_pi_iot/baby_monitor.jpg">
+						<h2>Baby Monitors</h2>
+						<p>
+							<ul>
+								<span class="fragment"><li>
+									<h5>Raspberry Pi Model B</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Inexpensive USB webcams with IR filter removed</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>External ZoneMinder server for web access and encryption</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Uses Linux tools, customized with shell (Bash) scripting</h5>
+								</li></span>
+							</ul>	
+						</p>
+					</section>
+					<section id="baby_monitors1" data-background="/assets/don_pi_iot/baby_monitor.jpg">
+						<p class="fragment"><img style="display: inline-block" width="400" height="300" data-src="/assets/don_pi_iot/monitor_scarlett2.jpg"><img style="display: inline-block" width="400" height="300" data-src="/assets/don_pi_iot/monitor_scarlett3.jpg"></p>
+						<p class="fragment"><img style="display: inline-block" width="400" height="300" data-src="/assets/don_pi_iot/monitor_gus0.jpg"><img style="display: inline-block" width="400" height="300" data-src="/assets/don_pi_iot/monitor_gus1.jpg"></p>
+					</section>
+					<section id="baby_monitors2" data-background="/assets/don_pi_iot/baby_monitor.jpg">
+						<p class="fragment"><h2>Infrared LED Spotlight</h2></p>
+						<p class="fragment"><img width="359" height="550" data-src="/assets/don_pi_iot/led_spotlight.png"></p>
+
+					</section>
+					<section id="clock0" data-background="/assets/don_pi_iot/clock8.jpg">
+						<h2>RGB LED Clock</h2>
+						<h5>Teaching young children time management</h5>
+						<h5>Green: Playtime</h5>
+						<h5>Red: Bedtime</h5>
+						<h5>Crazy Clock</h5>
+						<h5>Bedtime Clock</h5>
+					</section>
+					<section id="clock01" data-background="/assets/don_pi_iot/clock8.jpg">
+						<h2>RGB LED Clock</h2>
+						<p>
+							<ul>
+								<span class="fragment"><li>
+									<h5>Raspberry Pi Model B & Raspberry Pi Zero</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Customizable colors and time schedule</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Uses cron with a web interface</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Written in C++</h5>
+								</li></span>
+							</ul>	
+						</p>
+					</section>
+					<section id="clock1" data-background="rgba(0, 0, 0, .25">
+						<p><img style="margin-left: auto; margin-right: auto;" width="560" height="246" data-src="/assets/don_pi_iot/clock1.jpg"></p>
+					</section>
+					<section id="clock2" data-background="rgba(0, 0, 0, .25">
+						<p><img width="309" height="550" data-src="/assets/don_pi_iot/clock3.jpg"></p>
+					</section>
+					<section id="clock3" data-background="rgba(0, 0, 0, .25">
+						<p><img style="display: inline-block" width="309" height="550" data-src="/assets/don_pi_iot/clock2.jpg">&emsp;<img style="display: inline-block" width="309" height="550" data-src="/assets/don_pi_iot/clock4.jpg"></p>
+					</section>
+					<section id="clock4" data-background="rgba(0, 0, 0, .25">
+						<p><img width="733" height="550" data-src="/assets/don_pi_iot/clock5.jpg"></p>
+					</section>
+					<section id="clock5" data-background="rgba(0, 0, 0, .25">
+						<p><img style="display: inline-block" width="309" height="550" data-src="/assets/don_pi_iot/clock6.jpg">&emsp;<img style="display: inline-block" width="309" height="550" data-src="/assets/don_pi_iot/clock7.jpg"></p>
+					</section>
+					<section id="clock6" data-background="/assets/don_pi_iot/clock4_1.jpg"></section>
+					<section id="clock7" data-background="/assets/don_pi_iot/clock8.jpg"></section>
+					<section id="garage0" data-background="rgba(0, 0, 0, .25">
+						<h2>Garage Door Opener & Status Page</h2>
+						<img width="631" height="492" data-src="/assets/don_pi_iot/garage0.png">
+					</section>
+					<section id="garage01" data-background="rgba(0, 0, 0, .25">
+							<h2>Garage Door Opener & Status Page</h2>
+							<p>
+								<ul>
+									<span class="fragment"><li>
+										<h5>Raspberry Pi Model B+</h5>
+									</li></span>
+									<span class="fragment"><li>
+										<h5>Customizable color scheme</h5>
+									</li></span>
+									<span class="fragment"><li>
+										<h5>Web interface on Apache with encryption</h5>
+									</li></span>
+									<span class="fragment"><li>
+										<h5>Written in PHP</h5>
+									</li></span>
+									<span class="fragment"><li>
+										<h5>Very simple API</h5>
+									</li></span>
+								</ul>	
+							</p>
+					</section>
+					<section id="garage1" data-background="rgba(0, 0, 0, .25">
+						<p><img style="display: inline-block" width="309" height="550" data-src="/assets/don_pi_iot/garage2.jpg">&emsp;<img style="display: inline-block" width="309" height="550" data-src="/assets/don_pi_iot/garage3.jpg"></p>
+					</section>
+					<section id="garage2" data-background="rgba(0, 0, 0, .25">
+							<img width="515" height="515" data-src="/assets/don_pi_iot/garage4.gif">
+					</section>
+					<section id="bedlights0" data-background-video="/assets/don_pi_iot/bedlights0.webm" data-background-color="#000000">
+						<h2>Under-Bed LED Lights</h2>
+						<p>
+							<ul>
+								<span class="fragment"><li>
+									<h5>Raspberry Pi Zero w/ 150 Neopixel RGB LEDs & 2 PIR sensors</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Looks up sunrise & sunset data and only operates dusk to dawn</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Fully customizable color scheme</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Motion detection and button operation</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Customizable timeout, speed, brightness</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Written in Python</h5>
+								</li></span>
+							</ul>	
+						</p>
+					</section>
+					<section id="bedlights1" data-background="rgba(0, 0, 0, .25">
+						<img width="1000" height="643" data-src="/assets/don_pi_iot/bedlights0.png">
+					</section>
+					<section id="bedlights0" data-background-video="/assets/don_pi_iot/bedlights1.webm" data-background-color="#000000">
+						<h2>Under-Bed LED Lights</h2>
+					</section>
+					<section id="headboard0" data-background="/assets/don_pi_iot/headboard0.jpg">
+						<h2>RGB LED Headboard</h2>
+						<h5>Removing blue light from night time routine</h5>
+						<h5>Adding warm ambient light to a room</h5>
+					</section>
+					<section id="headboard1" data-background="/assets/don_pi_iot/headboard1.jpg">
+					<h2>RGB LED Headboard</h2>
+						<p>
+							<ul>
+								<span class="fragment"><li>
+									<h5>Raspberry Pi Zero, 150 Neopixel RGB LEDs</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Customizable times, brightness, colors</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Full web interface for colors and timing</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Daytime operation mode for aesthetics</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>Written in Python</h5>
+								</li></span>
+								<span class="fragment"><li>
+									<h5>All features accessible via API</h5>
+								</li></span>
+							</ul>	
+						</p>
+				
+					</section>
+					<section id="headboard2" data-background="/assets/don_pi_iot/headboard2.jpg"></section>
+					<section id="headboard3" data-background="/assets/don_pi_iot/headboard3.jpg"></section>
+					<section id="headboard4" data-background="/assets/don_pi_iot/headboard4.jpg">
+						
+					</section>
+
+
+				</section>
+
+
+
+				<section id="espsoftware">
+					<section id="don_esp_iot" data-background="rgba(0, 0, 0, .25">
+						<h2>Don's ESP8266 IoT Projects</h2>
+							<ul>
+								<li><h5>Laundry Monitor and Notifications</h5></li>
+								<li><h5>Lamps</h5></li>
+								<li><h5>Lights</h5></li>
+								<li><h5>Fans & Attic Fan</h5></li>
+								<li><h5>Dinner Bell</h5></li>
+								<li><h5>Google Home</h5></li>
+							</ul>
+					</section>
+
+
+				</section>
+
+
+
+
+
+
+
+			</section>
 		</div>
+	</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+			]
+		});
+	</script>
+</body>
+
 </html>
