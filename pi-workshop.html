@@ -1,0 +1,533 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Oxygen" rel="stylesheet">
+
+    <title>Creating IoT Devices with the Raspberry Pi</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/el_don.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section id="start" data-background="rgba(0, 0, 0, .25">
+                <h1>Creating IoT Devices with the Raspberry Pi</h1>
+
+                <h3>A look into how to make a Raspberry Pi
+                    <br> interact with the world around us</h3>
+
+
+                <p>
+                    <h6>Created by Don Howdeshell</h6>
+                </p>
+            </section>
+            <section data-background="/assets/mstsignnight.png" id="intro0" data-background="rgba(0, 0, 0, .25">
+                <block background="rgba(255, 255, 255, 0.05)">
+                    <h1>Introduction</h1>
+                    <p>
+                        <span>
+                            <h2>Don Howdeshell</h2>
+                        </span>
+
+                        <span class="fragment">
+                            <h5>University of Missouri - Rolla / Missouri University of Science & Technology</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>BS in Information Science and Technology</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>13 years at UMR/S&T - Systems Administrator</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>5 years at ITRSS</h5>
+                            <img style="border: none; box-shadow: none;" width="200" height="62" data-src="/assets/paper-logo-white.png">
+                        </span>
+                    </p>
+                </block>
+            </section>
+            <section data-background="/assets/donoffice.jpg" id="intro1" data-background="rgba(0, 0, 0, .25">
+                <block background="rgba(255, 255, 255, 0.05)">
+                    <p>
+                        <span>
+                            <h2>Software & Hardware Development</h2>
+                        </span>
+
+                        <span class="fragment">
+                            <h5>MinerBytes</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>Embedded Systems</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>Server Administration</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>A little bit of everything</h5>
+                        </span>
+                        <span class="fragment">
+                            <h7>RTD apps, RTiD, MinerTrax, Nonavitra, microcontrollers</h7>
+                        </span>
+                    </p>
+                </block>
+            </section>
+            <section id="terminologymaster">
+                <section id="terminology0" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Terminology</h2>
+                    <h5>Alternating Current vs Direct Current</h5>
+                    <h5>Voltage (Volts): Difference in electrical potential</h5>
+                    <h5>Amperage (Amps): The current of electricity flowing</h5>
+                    <h5>Resistance / Ohm: The degree to which current is opposed</h5>
+                    <h5>Capacitance / Farad: The ability to store a charge</h5>
+
+                </section>
+                <section id="terminology1" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Plumbing Analogy</h2>
+                    <img style="display: inline-block" data-src="/assets/pi-workshop/water-analogy.png">
+
+                </section>
+                <section id="terminology2" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Terminology</h2>
+                    <h5>Analog vs Digital: Waveform vs Binary</h5>
+                    <img style="display: inline-block" data-src="/assets/pi-workshop/digitalvsanalog.png">
+                    <img style="display: inline-block" height="285" data-src="/assets/pi-workshop/resolution.png">
+                    <h5>Digital Sampling Rate & Bit Depth / Resolution</h5>
+                </section>
+                <section id="terminology3" data-background="rgba(0, 0, 0, .35)">
+                    <h3>Switch: Mechanical device that
+                       <br>opens or closes a circuit</h3>
+                    <h3>Relay: Electromechanical switch</h3>
+                    <img style="display: inline-block" width="733" data-src="/assets/pi-workshop/relay.png">
+
+                </section>
+                <section id="terminology3-1" data-background="rgba(0, 0, 0, .35)">
+                        <h4>PCB: Printed Circuit Board</h4>
+                        <h4>SBC: Single Board Computer</h4>
+                        <h4>Microcontroller: A small computer on a single integrated circuit</h4>
+                        <h4>Microcomputer: A small computer</h4>
+                    
+    
+                    </section>
+                <section id="terminology4" data-background="rgba(0, 0, 0, .35)">
+                    <h3>GPIO: General Purpose Input/Output</h3>
+                    <h3>High: Logical status of 1 (i.e. 3.3V using 3.3V logic)</h3>
+                    <h3>Low: Logical status of 0 (i.e. 0V using 3.3V logic)</h3>
+                </section>
+                <section id="terminology5" data-background="rgba(0, 0, 0, .35)">
+                    <h3>Shields (Arduino): Boards that can be plugged on<br>top of the PCB to extend it's capabilities.</h3>
+                    <img style="display: inline-block" width="500" data-src="/assets/pi-workshop/arduinoleonardo.png">
+                    <h5>An Arduino Leonardo</h5>
+                    
+                </section>
+                <section id="terminology6" data-background="rgba(0, 0, 0, .35)">
+                    
+                                                <img style="display: inline-block" width="500" data-src="/assets/pi-workshop/arduinowifi.png">
+                                                <h5>An Arduino WiFi Shield</h5>    
+                    </section>
+                    <section id="terminology7" data-background="rgba(0, 0, 0, .35)">
+                            
+                            <img style="display: inline-block" width="500" data-src="/assets/pi-workshop/arduinowithshield.png">
+                            <h5>An Arduino with an Ethernet Shield attached</h5>
+                        </section>
+                        <section id="terminology8" data-background="rgba(0, 0, 0, .35)">
+                                <h3>Pi HAT:  Hardware Attached on Top</h3>
+                                <h3>A board that can extend the capabilities of the PCB</h3>
+                                <img style="display: inline-block" height="400" data-src="/assets/pi-workshop/pipoe.png">
+                                <h5>A Raspberry Pi Power over Ethernet (PoE) HAT</h5>
+                                
+                            </section>
+            </section>
+
+
+
+
+            <section id="protocolsmaster">
+                <section id="protocols0" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Supported Hardware & Software Protocols</h2>
+                    <ul>
+                        <li>
+                            <h7>Serial/UART: Universal Asynchronous Receiver/Transmitter</h7>
+                            <h7>1:1 device ratio, slow, easy in hardware, hard in software.</h7>
+                        </li>
+                        <li>
+                            <h7>SPI: Serial Peripheral Interface; synchronous, 1 master to</h7>
+                            <h7>multiple slaves, faster than UART, high data rate, short distances</h7>
+                        </li>
+                        <li>
+                            <h7>I&sup2C: Inter-Integrated Circuit; 2 wire serial, simple</h7>
+                            <h7>multiple masters & up to 1008 slaves, high data rate, short distances</h7>
+                        </li>
+                        <li>
+                            <h7>1-Wire: Similar to I&sup2C, lower data rate & longer distances</h7>
+                        </li>
+                        <li>
+                            <h7>PWM: Pulse-Width Modulation; Digital pulse wave to approximate</h7>
+                            <h7>an analog signal. Changes the duration of the pulse to get desired waveform. Done in
+                                software.
+                            </h7>
+                        </li>
+                    </ul>
+                </section>
+                <section id="protocols1" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Serial/UART: Universal Asynchronous Receiver/Transmitter</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/uart.png">
+                </section>
+                <section id="protocols2" data-background="rgba(0, 0, 0, .35)">
+                    <h2>SPI: Serial Peripheral Interface</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/spi.png">
+                </section>
+                <section id="protocols3" data-background="rgba(0, 0, 0, .35)">
+                    <h2>I&sup2C: Inter-Integrated Circuit</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/i2c_white.jpg">
+                </section>
+                <section id="protocols4" data-background="rgba(0, 0, 0, .35)">
+                    <h2>1-Wire</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/1-wire.png">
+                </section>
+                <section id="protocols5" data-background="rgba(0, 0, 0, .35)">
+                    <h2>PWM: Pulse-Width Modulation</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/pwm.png">
+                </section>
+
+            </section>
+
+
+            <section id="pinout0" data-transition="zoom" data-background-transition="zoom" data-background="rgba(0, 0, 0, .35)">
+                <img style="display: inline-block" height="680" data-src="/assets/pi-workshop/3b+.png">
+                <img style="display: inline-block" height="666" data-src="/assets/pi-workshop/pinout.png">
+            </section>
+            <section id="pinout1" data-transition="zoom" data-background-transition="zoom" data-background="rgba(0, 0, 0, .35)">
+                <img style="display: inline-block" data-src="/assets/pi-workshop/pinout1.png">
+            </section>
+            <section id="pinout2" data-background="rgba(0, 0, 0, .35)">
+                <h2>Raspberry Pi GPIO Status</h2>
+                <h5>Open Terminal</h5>
+                <pre><code class="bash hljs" data-trim contenteditable>
+                    git clone git://github.com/rricharz/pi-gpio-display
+                    cd pi-gpio-display
+                    chmod +x ./install
+                    ./install
+                    </code></pre>
+
+            </section>
+
+
+            <section id="helloworld" data-background="rgba(0, 0, 0, .35)">
+                <h2>Hello World!</h2>
+                <h5>The "Hello World!" of the hardware world is blinking an LED</h5>
+                <h5>What is an LED?</h5>
+                <h5>The color is controlled by setting the energy of the electrons that are becoming photons</h5>
+            </section>
+
+
+            <section id="ledmaster">
+                <section id="ledflash0" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Flashing an LED</h2>
+                    <pre><code class="bash hljs" data-trim contenteditable>
+nano on_off.py
+                </code></pre>
+                    <pre><code class="python hljs" data-trim contenteditable>
+while True:
+    import RPi.GPIO as GPIO
+    import time
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(18, GPIO.OUT)
+    print "GPIO 18 on."
+    GPIO.output(18, GPIO.HIGH)
+    time.sleep(1)
+    print "GPIO 18 off."
+    GPIO.output(18, GPIO.LOW)
+    time.sleep(1)
+                    </code></pre>
+
+                </section>
+                <section id="ledflash2" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Connecting the LED</h2>
+                    <img style="display: inline-block" data-src="/assets/pi-workshop/led1.png">
+                </section>
+                <section id="ledflash3" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Connecting the LED</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/sensors/rgbled.jpg">
+                </section>
+                <section id="ledflash3" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Connecting the LED</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/pi-workshop/wiring_led.png">
+                </section>
+
+                <section id="ledflash5" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Running the code</h2>
+                    <pre><code class="bash hljs" data-trim contenteditable>
+sudo python on_off.py
+                    </code></pre>
+                </section>
+            </section>
+
+            <section id="relaymaster">
+                <section id="relay0">
+                    <h2>Activating A Relay</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/pi-workshop/wiring_relay.png">
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                        sudo python on_off.py
+                    </code></pre>
+                </section>
+            </section>
+
+            <section id="buzzermaster">
+                <section id="buzzer0">
+                    <h2>Activating A Buzzer</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/pi-workshop/wiring_buzzer.png">
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                        sudo python on_off.py
+                    </code></pre>
+
+                </section>
+
+            </section>
+            <section id="lasermaster">
+                <section id="laser0">
+                    <h2>Activating A Laser</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/pi-workshop/wiring_laser.png">
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                        sudo python on_off.py
+                    </code></pre>
+                </section>
+            </section>
+
+            <section id="buttonledmaster">
+                <section id="buttonled0">
+                    <h2>GPIO Input and Output</h2>
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                            nano io.py
+                    </code></pre>
+                    <pre><code class="python hljs" data-trim contenteditable>
+                            import RPi.GPIO as GPIO
+                            import time
+                                            
+                            GPIO.setmode(GPIO.BCM)
+                            GPIO.setwarnings(False)
+                                
+                            GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+                            GPIO.setup(18, GPIO.OUT)
+                                
+                            while True:
+                                input_state = GPIO.input(15)
+                                if input_state == False:
+                                    print("Button pressed, activating LED")
+                                    GPIO.output(18, GPIO.HIGH)
+                                    time.sleep(.2)
+                                    GPIO.output(18, GPIO.LOW)
+                                    time.sleep(.2)
+                    </code></pre>
+                </section>
+                <section id="buttonled1">
+                    <h2>GPIO Input and Output</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/pi-workshop/wiring_button_led.png">
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                        sudo python io.py
+                    </code></pre>
+                </section>
+            </section>
+
+
+
+
+
+
+
+
+            <section id="1wiremaster">
+                <section id="1wire0" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Reading data from a 1-Wire device</h2>
+                    <h5>Enabling the 1-Wire interface</h5>
+                    <h5>Menu > Preferences > Raspberry Pi Configuration</h5>
+                </section>
+                <section id="1wire1" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Reading data from a 1-Wire device</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/pi-workshop/config.png">
+                    <h5>Reboot.</h5>
+                </section>
+                <section id="1wire2" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Reading data from a 1-Wire device</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/pi-workshop/wiring_1wire.png">
+                </section>
+                <section id="1wire3" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Reading data from a 1-Wire device</h2>
+                    <h5>Using the kernel module</h5>
+                    <h5>Open Terminal</h5>
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                            cd /sys/bus/w1/devices
+                            ls
+                            cd 28-00000xxxxx
+                            cat w1_slave
+                    </code></pre>
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                        89 01 00 00 7f ff ff ff 92 : crc=92 YES
+                        89 01 00 00 7f ff ff ff 92 t=24562
+                    </code></pre>
+                    <h5>t=24562: 24.562ºC</h5>
+                </section>
+                <section id="1wire4" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Reading data from a 1-Wire device</h2>
+                    <h5>Using Python</h5>
+                    <h5>Open Terminal</h5>
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                        cd
+                        wget https://rtd2018.mst.edu/micro-workshops/python_temp.py
+                        sudo python ./python_temp.py
+                    </code></pre>
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                        22.81 C 73.06 F
+                    </code></pre>
+                    <pre><code class="bash hljs" data-trim contenteditable>
+                        nano python_temp.py
+                    </code></pre>
+                </section>
+
+
+            </section>
+
+
+
+
+
+            <section id="rtidmaster">
+                <section id="rtid0" data-background="/assets/rtid.png">
+                    <h2>RTiD: NFC-Based Attendance System</h2>
+                </section>
+                <section id="rtid01" data-background="/assets/rtid1.png">
+                    <span>
+                        <h2>RTiD: NFC-Based Attendance System</h2>
+                    </span>
+                    <p>
+                        <ul>
+                            <span class="fragment">
+                                <li>
+                                    <h3>Raspberry Pi Zero v1.2</h3>
+                                </li>
+                            </span>
+                            <span class="fragment">
+                                <li>
+                                    <h3>USB WiFi Dongle</h3>
+                                </li>
+                            </span>
+                            <span class="fragment">
+                                <li>
+                                    <h3>PN532 NFC/RFID Reader w/ Serial Interface</h3>
+                                </li>
+                            </span>
+                            <span class="fragment">
+                                <li>
+                                    <h3>PowerBoost 1000 Charger and Battery Backup</h3>
+                                </li>
+                            </span>
+                            <span class="fragment">
+                                <li>
+                                    <h3>2 Batteries - 350mAh LiPo & 3400mAh PowerBank</h3>
+                                </li>
+                            </span>
+                        </ul>
+                    </p>
+                </section>
+                <section id="rtid1" data-background="/assets/rtid1.png">
+                    <span>
+                        <h2>RTiD: NFC-Based Attendance System</h2>
+                    </span>
+                    <p>
+                        <ul>
+                            <span class="fragment">
+                                <li>
+                                    <h3>Scans NFC Tag</h3>
+                                </li>
+                            </span>
+                            <span class="fragment">
+                                <li>
+                                    <h3>Flashes RGB LEDs on success or failure</h3>
+                                </li>
+                            </span>
+                            <span class="fragment">
+                                <li>
+                                    <h3>Caches the data until it can send it to Web App</h3>
+                                </li>
+                            </span>
+                            <span class="fragment">
+                                <li>
+                                    <h3>Battery management in software</h3>
+                                </li>
+                            </span>
+                            <span class="fragment">
+                                <li>
+                                    <h3>Software to handle WiFi, errors, failures, parsing, etc.</h3>
+                                </li>
+                            </span>
+                        </ul>
+                    </p>
+                </section>
+                <section id="rtid2" data-background="rgba(0, 0, 0, .35)">
+                    <h2>RTiD: NFC-Based Attendance System</h2>
+                    <img style="display: inline-block" width="1000" data-src="/assets/rtid/scanner.jpg">
+                </section>
+                <section id="rtid3" data-background="rgba(0, 0, 0, .35)">
+                    <h2>RTiD: NFC-Based Attendance System</h2>
+                    <img style="display: inline-block" width="1000" data-src="/assets/rtid/full.jpg">
+                </section>
+                <section id="rtid4" data-background="rgba(0, 0, 0, .35)">
+                    <h2>RTiD: NFC-Based Attendance System</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/rtid/name_badge.jpg">
+                </section>
+            </section>
+
+            <section id="qa0" data-background="rgba(0, 0, 0, .35)">
+                <h2>Questions?</h2>
+                <h2>Further discussion</h2>
+            </section>
+            <section id="qa1" data-background="rgba(0, 0, 0, .35)">
+                <h2>Raspberry Pi Giveaway</h2>
+                <h2>10 winners</h2>
+                <h2>http://bit.ly/rtd2018rpi</h2>
+                <br>
+                <h2>Or just give feedback!</h2>
+                <h2>http://bit.ly/rtd2018micro</h2>
+            </section>
+
+
+
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            dependencies: [
+                { src: 'plugin/markdown/marked.js' },
+                { src: 'plugin/markdown/markdown.js' },
+                { src: 'plugin/notes/notes.js', async: true },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+            ]
+        });
+    </script>
+</body>
+
+</html>

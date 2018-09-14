@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Oxygen" rel="stylesheet">
+
+    <title>Creating IoT Devices with the ESP8266</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/el_don.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section id="start" data-background="rgba(0, 0, 0, .25">
+                <h1>Creating IoT Devices with the ESP8266</h1>
+
+                <h3>A look into how to make an ESP8266
+                    <br> interact with the world around us</h3>
+
+
+                <p>
+                    <h6>Created by Don Howdeshell</h6>
+                </p>
+            </section>
+            <section data-background="/assets/mstsignnight.png" id="intro0" data-background="rgba(0, 0, 0, .25">
+                <block background="rgba(255, 255, 255, 0.05)">
+                    <h1>Introduction</h1>
+                    <p>
+                        <span>
+                            <h2>Don Howdeshell</h2>
+                        </span>
+
+                        <span class="fragment">
+                            <h5>University of Missouri - Rolla / Missouri University of Science & Technology</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>BS in Information Science and Technology</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>13 years at UMR/S&T - Systems Administrator</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>5 years at ITRSS</h5>
+                            <img style="border: none; box-shadow: none;" width="200" height="62" data-src="/assets/paper-logo-white.png">
+                        </span>
+                    </p>
+                </block>
+            </section>
+            <section data-background="/assets/donoffice.jpg" id="intro1" data-background="rgba(0, 0, 0, .25">
+                <block background="rgba(255, 255, 255, 0.05)">
+                    <p>
+                        <span>
+                            <h2>Software & Hardware Development</h2>
+                        </span>
+
+                        <span class="fragment">
+                            <h5>MinerBytes</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>Embedded Systems</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>Server Administration</h5>
+                        </span>
+                        <span class="fragment">
+                            <h5>A little bit of everything</h5>
+                        </span>
+                        <span class="fragment">
+                            <h7>RTD apps, RTiD, MinerTrax, Nonavitra, microcontrollers</h7>
+                        </span>
+                    </p>
+                </block>
+            </section>
+            <section id="terminologymaster">
+                <section id="terminology0" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Terminology</h2>
+                    <h5>Alternating Current vs Direct Current</h5>
+                    <h5>Voltage (Volts): Difference in electrical potential</h5>
+                    <h5>Amperage (Amps): The current of electricity flowing</h5>
+                    <h5>Resistance / Ohm: The degree to which current is opposed</h5>
+                    <h5>Capacitance / Farad: The ability to store a charge</h5>
+
+                </section>
+                <section id="terminology1" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Plumbing Analogy</h2>
+                    <img style="display: inline-block" data-src="/assets/pi-workshop/water-analogy.png">
+
+                </section>
+                <section id="terminology2" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Terminology</h2>
+                    <h5>Analog vs Digital: Waveform vs Binary</h5>
+                    <img style="display: inline-block" data-src="/assets/pi-workshop/digitalvsanalog.png">
+                    <img style="display: inline-block" height="285" data-src="/assets/pi-workshop/resolution.png">
+                    <h5>Digital Sampling Rate & Bit Depth / Resolution</h5>
+                </section>
+                <section id="terminology3" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Switch: Mechanical device that
+                        <br>opens or closes a circuit</h2>
+                    <h2>Relay: Electromechanical switch</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/pi-workshop/relay.png">
+
+                </section>
+                <section id="terminology4" data-background="rgba(0, 0, 0, .35)">
+                    <h3>GPIO: General Purpose Input/Output</h3>
+                    <h3>High: Logical status of 1 (i.e. 3.3V using 3.3V logic)</h3>
+                    <h3>Low: Logical status of 0 (i.e. 0V using 3.3V logic)</h3>
+                </section>
+                <section id="terminology5" data-background="rgba(0, 0, 0, .35)">
+                    <h3>Arduino: Open Source single-board microcontroller</h3>
+                    <h3>IDE: Integrated Development Environment</h3>
+                    <h3>ESP8266: WiFi microchip/microcontroller</h3>
+                    <h3>Library: Collection of implementations or behaviors</h3>
+                    <h3>with defined interfaces; typically modular & reusable</h3>
+                </section>
+                <section id="terminology6" data-background="rgba(0, 0, 0, .35)">
+                    <h3>API: Application Programming Interface</h3>
+                    <h3>Software that allows two applications to talk</h3>
+                    <h3>JSON: JavaScript Object Notation</h3>
+                    <h3>Lightweight data interchange format</h3>
+                </section>
+            </section>
+
+
+
+            <section id="protocolsmaster">
+                <section id="protocols0" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Supported Hardware & Software Protocols</h2>
+                    <ul>
+                        <li>
+                            <h7>Serial/UART: Universal Asynchronous Receiver/Transmitter</h7>
+                            <h7>1:1 device ratio, slow, easy in hardware, hard in software.</h7>
+                        </li>
+                        <li>
+                            <h7>SPI: Serial Peripheral Interface; synchronous, 1 master to</h7>
+                            <h7>multiple slaves, faster than UART, high data rate, short distances</h7>
+                        </li>
+                        <li>
+                            <h7>I&sup2C: Inter-Integrated Circuit; 2 wire serial, simple</h7>
+                            <h7>multiple masters & up to 1008 slaves, high data rate, short distances</h7>
+                        </li>
+                        <li>
+                            <h7>1-Wire: Similar to I&sup2C, lower data rate & longer distances</h7>
+                        </li>
+                        <li>
+                            <h7>PWM: Pulse-Width Modulation; Digital pulse wave to approximate</h7>
+                            <h7>an analog signal. Changes the duration of the pulse to get desired waveform. Done in
+                                software.
+                            </h7>
+                        </li>
+                    </ul>
+                </section>
+                <section id="protocols1" data-background="rgba(0, 0, 0, .35)">
+                    <h2>Serial/UART: Universal Asynchronous Receiver/Transmitter</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/uart.png">
+                </section>
+                <section id="protocols2" data-background="rgba(0, 0, 0, .35)">
+                    <h2>SPI: Serial Peripheral Interface</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/spi.png">
+                </section>
+                <section id="protocols3" data-background="rgba(0, 0, 0, .35)">
+                    <h2>I&sup2C: Inter-Integrated Circuit</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/i2c_white.jpg">
+                </section>
+                <section id="protocols4" data-background="rgba(0, 0, 0, .35)">
+                    <h2>1-Wire</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/1-wire.png">
+                </section>
+                <section id="protocols5" data-background="rgba(0, 0, 0, .35)">
+                    <h2>PWM: Pulse-Width Modulation</h2>
+                    <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/pwm.png">
+                </section>
+
+            </section>
+
+
+            <section id="pinout" data-background="rgba(0, 0, 0, .7">
+                <h5>ESP8266-12e or NodeMCU 1.0</h5>
+                <img height="467" data-src="/assets/esp-workshop/nodemcu-12E-pinout.png">
+                <h5>16+ GPIO, 4MB SPI Flash, Onboard Serial and Voltage Regulator</h5>
+            </section>
+
+
+            <section id="arduinoide" data-background="rgba(0, 0, 0, .35)">
+                <h2>Installing the Arduino IDE via Terminal</h2>
+                <pre><code class="bash hljs" data-trim contenteditable>
+                        wget https://rtd2018.mst.edu/micro-workshops/arduino-arm.tar
+                          
+                        tar -xf arduino-arm.tar
+
+                        cd arduino-1.8.6
+
+                        sudo ./install.sh
+               </code></pre>
+            </section>
+
+            <section id="downloadcode" data-background="rgba(0, 0, 0, .35)">
+                <h2>Downloading our code</h2>
+                <pre><code class="bash hljs" data-trim contenteditable>
+                        git clone https://github.com/dhowdy/esp8266-weather-station.git
+                    </code></pre>
+            </section>
+
+
+            <section id="weatherstationmaster">
+                <section id="weatherstation0" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h5>Arduino IDE</h5>
+                    <h5>C or C++ based firmware</h5>
+                    <img style="display: inline-block" height="425" data-src="/assets/esp-workshop/ide.png">
+                </section>
+                <section id="weatherstation1" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h5>Installing Libraries</h5>
+                    <img style="display: inline-block" height="520" data-src="/assets/esp-workshop/libmanager.png">
+                </section>
+                <section id="weatherstation2" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h5>Installing Libraries</h5>
+                    <ul>
+                        <li>
+                            <h5>JSON Streaming Parser by Daniel Eichhorn</h5>
+                        </li>
+                        <li>
+                            <h5>
+                                ESP8266 OLED Driver for SSD1306 display by Daniel Eichhorn</h5>
+                        </li>
+                        <li>
+                            <h5>
+                                DHT Sensor Library by Adafruit</h5>
+                        </li>
+                        <li>
+                            <h5>
+                                SimpleDSTadjust by Neptune</h5>
+                        </li>
+                        <li>
+                            <h5>
+                                WiFiManager by tzapu</h5>
+                        </li>
+                        <li>
+                            <h5>
+                                Adafruit Unified Sesnor by Adafruit</h5>
+                        </li>
+                        <li>
+                            <h5>
+                                ESP8266 Weather Station by Thingpulse</h5>
+                        </li>
+
+                </section>
+                <section id="weatherstation2-1" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h5>Installing Libraries</h5>
+                    <pre><code class="hljs" data-trim contenteditable>
+                            wget https://rtd2018.mst.edu/micro-workshops/arduino-libs.tar
+
+                            tar -xf arduino-libs.tar -C ~/
+                        </code></pre>
+
+                </section>
+                <section id="weatherstation3" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h5>Boards Manager URL</h5>
+                    <pre><code class="hljs" data-trim contenteditable>
+                        http://arduino.esp8266.com/stable/package_esp8266com_index.json
+                    </code></pre>
+                    <img style="display: inline-block" height="400" data-src="/assets/esp-workshop/preferences.png">
+                </section>
+                <section id="weatherstation4" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h5>Tools > Board > Boards Manager</h5>
+                    <h5>ESP8266 by ESP8266 Community</h5>
+                    <img style="display: inline-block" height="400" data-src="/assets/esp-workshop/boards.png">
+                </section>
+                <section id="weatherstation5" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h5>Board: NodeMCU 1.0 (ESP-12E Module)</h5>
+                    <h5>Port: /dev/ttyUSB0</h5>
+                    <img style="display: inline-block" height="400" data-src="/assets/esp-workshop/nodemcuboard.png">
+                </section>
+                <section id="weatherstation6" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <pre><code class="cpp hljs" data-trim contenteditable>
+// Set your name to be displayed on the splash screen
+const String AUTHOR_NAME = "Don Howdeshell";
+
+// Enable or disable OpenWeatherMap or Wunderground
+#define OWMClient
+                        </code></pre>
+                </section>
+                <section id="weatherstation7" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h3>OpenWeatherMap API</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+                               http://home.openweathermap.org
+                            </code></pre>
+                </section>
+                <section id="weatherstation8" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h3>OpenWeatherMap API</h3>
+                    <pre><code class="cpp hljs" data-trim contenteditable>
+                                // OpenWeatherMap Settings
+                                
+                                const boolean OWM_IS_METRIC = false;
+                                String OPEN_WEATHER_MAP_APP_ID = "XXXXXXX";
+                                String OPEN_WEATHER_MAP_LOCATION = "Rolla,US"; //4406282
+                            </code></pre>
+                </section>
+                <section id="weatherstation9" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h3>Wiring the SSD1306 and DHT11</h3>
+                    <img style="display: inline-block" height="500" data-src="/assets/esp-workshop/wiring.png">
+                </section>
+                <section id="weatherstation9-1" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h3>Upload to your ESP8266 board!</h3>
+                </section>
+                <section id="weatherstation10" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <h3>Configure Wifi</h3>
+                    <h3>Connect to the network indicated on your screen</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+                    http://192.168.4.1
+                </code></pre>
+                    <h3>Click on the RTD2018 SSID and enter the password:</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+                        research
+                    </code></pre>
+                </section>
+
+            </section>
+            <section id="imagesmaster" data-background="rgba(0, 0, 0, .35)">
+                <section id="images0" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/esp-weather/splash.png">
+                </section>
+                <section id="images1" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/esp-weather/updating.png">
+                </section>
+                <section id="images2" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/esp-weather/Rolla_CDT.png">
+                </section>
+                <section id="images3" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/esp-weather/conditions.png">
+                </section>
+                <section id="images4" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/esp-weather/1-3_day_forecast.png">
+                </section>
+                <section id="images5" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/esp-weather/4-6_day_forecast.png">
+                </section>
+                <section id="images6" data-background="rgba(0, 0, 0, .35)">
+                    <h2>ESP8266 Weather Station</h2>
+                    <img style="display: inline-block" height="500" data-src="/assets/esp-weather/DHT11_sensor.png">
+                </section>
+
+            </section>
+
+
+
+            <section id="qa0" data-background="rgba(0, 0, 0, .35)">
+                <h2>Questions?</h2>
+                <h2>Further discussion</h2>
+            </section>
+            <section id="qa1" data-background="rgba(0, 0, 0, .35)">
+                <h2>Raspberry Pi Giveaway</h2>
+                <h2>10 winners</h2>
+                <h2>http://bit.ly/rtd2018rpi</h2>
+                <br>
+                <h2>Or just give feedback!</h2>
+                <h2>http://bit.ly/rtd2018micro</h2>
+            </section>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            dependencies: [
+                { src: 'plugin/markdown/marked.js' },
+                { src: 'plugin/markdown/markdown.js' },
+                { src: 'plugin/notes/notes.js', async: true },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+            ]
+        });
+    </script>
+</body>
+
+</html>
