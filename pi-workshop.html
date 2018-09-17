@@ -111,19 +111,19 @@
                 </section>
                 <section id="terminology3" data-background="rgba(0, 0, 0, .35)">
                     <h3>Switch: Mechanical device that
-                       <br>opens or closes a circuit</h3>
+                        <br>opens or closes a circuit</h3>
                     <h3>Relay: Electromechanical switch</h3>
                     <img style="display: inline-block" width="733" data-src="/assets/pi-workshop/relay.png">
 
                 </section>
                 <section id="terminology3-1" data-background="rgba(0, 0, 0, .35)">
-                        <h4>PCB: Printed Circuit Board</h4>
-                        <h4>SBC: Single Board Computer</h4>
-                        <h4>Microcontroller: A small computer on a single integrated circuit</h4>
-                        <h4>Microcomputer: A small computer</h4>
-                    
-    
-                    </section>
+                    <h4>PCB: Printed Circuit Board</h4>
+                    <h4>SBC: Single Board Computer</h4>
+                    <h4>Microcontroller: A small computer on a single integrated circuit</h4>
+                    <h4>Microcomputer: A small computer</h4>
+
+
+                </section>
                 <section id="terminology4" data-background="rgba(0, 0, 0, .35)">
                     <h3>GPIO: General Purpose Input/Output</h3>
                     <h3>High: Logical status of 1 (i.e. 3.3V using 3.3V logic)</h3>
@@ -133,25 +133,25 @@
                     <h3>Shields (Arduino): Boards that can be plugged on<br>top of the PCB to extend it's capabilities.</h3>
                     <img style="display: inline-block" width="500" data-src="/assets/pi-workshop/arduinoleonardo.png">
                     <h5>An Arduino Leonardo</h5>
-                    
+
                 </section>
                 <section id="terminology6" data-background="rgba(0, 0, 0, .35)">
-                    
-                                                <img style="display: inline-block" width="500" data-src="/assets/pi-workshop/arduinowifi.png">
-                                                <h5>An Arduino WiFi Shield</h5>    
-                    </section>
-                    <section id="terminology7" data-background="rgba(0, 0, 0, .35)">
-                            
-                            <img style="display: inline-block" width="500" data-src="/assets/pi-workshop/arduinowithshield.png">
-                            <h5>An Arduino with an Ethernet Shield attached</h5>
-                        </section>
-                        <section id="terminology8" data-background="rgba(0, 0, 0, .35)">
-                                <h3>Pi HAT:  Hardware Attached on Top</h3>
-                                <h3>A board that can extend the capabilities of the PCB</h3>
-                                <img style="display: inline-block" height="400" data-src="/assets/pi-workshop/pipoe.png">
-                                <h5>A Raspberry Pi Power over Ethernet (PoE) HAT</h5>
-                                
-                            </section>
+
+                    <img style="display: inline-block" width="500" data-src="/assets/pi-workshop/arduinowifi.png">
+                    <h5>An Arduino WiFi Shield</h5>
+                </section>
+                <section id="terminology7" data-background="rgba(0, 0, 0, .35)">
+
+                    <img style="display: inline-block" width="500" data-src="/assets/pi-workshop/arduinowithshield.png">
+                    <h5>An Arduino with an Ethernet Shield attached</h5>
+                </section>
+                <section id="terminology8" data-background="rgba(0, 0, 0, .35)">
+                    <h3>Pi HAT: Hardware Attached on Top</h3>
+                    <h3>A board that can extend the capabilities of the PCB</h3>
+                    <img style="display: inline-block" height="400" data-src="/assets/pi-workshop/pipoe.png">
+                    <h5>A Raspberry Pi Power over Ethernet (PoE) HAT</h5>
+
+                </section>
             </section>
 
 
@@ -187,18 +187,36 @@
                 <section id="protocols1" data-background="rgba(0, 0, 0, .35)">
                     <h2>Serial/UART: Universal Asynchronous Receiver/Transmitter</h2>
                     <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/uart.png">
+                    <aside class="notes">
+                        Asynchronous, negotiated data rate. Synchronous variant USART.
+                    </aside>
                 </section>
                 <section id="protocols2" data-background="rgba(0, 0, 0, .35)">
                     <h2>SPI: Serial Peripheral Interface</h2>
                     <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/spi.png">
+                    <aside class="notes">
+                        Developed by Motorola in the mid 1980s and has become a de facto standard.
+                        SD Cards, LCDs... Simple & daisy chained. Synchronous 4 wire serial bus, 3-wire variant.
+                        Master/Slave. Higher throughput than I&sup2C, requires more wires, no error checking.
+                        Faster than UART and I&sup2C. Master sets clock for the data rate
+                    </aside>
                 </section>
                 <section id="protocols3" data-background="rgba(0, 0, 0, .35)">
                     <h2>I&sup2C: Inter-Integrated Circuit</h2>
                     <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/i2c_white.jpg">
+                    <aside class="notes">
+                        Invented by Phillips in 1982. 2-wire serial bus. Multiple masters/slaves. 1008 devices.
+                        Speed between UART and SPI. No strict data rate.
+                    </aside>
                 </section>
                 <section id="protocols4" data-background="rgba(0, 0, 0, .35)">
                     <h2>1-Wire</h2>
                     <img style="display: inline-block" width="733" data-src="/assets/esp-workshop/1-wire.png">
+                    <aside class="notes">
+                        Developed by Dallas Semiconductor.
+                        Similar to I&sup2C but lower data rates and longer distances. Can be done with data & ground
+                        One master multiple slaves, MicroLAN.
+                    </aside>
                 </section>
                 <section id="protocols5" data-background="rgba(0, 0, 0, .35)">
                     <h2>PWM: Pulse-Width Modulation</h2>
@@ -243,12 +261,12 @@
 nano on_off.py
                 </code></pre>
                     <pre><code class="python hljs" data-trim contenteditable>
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(18, GPIO.OUT)
 while True:
-    import RPi.GPIO as GPIO
-    import time
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    GPIO.setup(18, GPIO.OUT)
     print "GPIO 18 on."
     GPIO.output(18, GPIO.HIGH)
     time.sleep(1)
@@ -334,6 +352,7 @@ sudo python on_off.py
                                     time.sleep(.2)
                                     GPIO.output(18, GPIO.LOW)
                                     time.sleep(.2)
+                                GPIO.output(18, GPIO.LOW)
                     </code></pre>
                 </section>
                 <section id="buttonled1">
